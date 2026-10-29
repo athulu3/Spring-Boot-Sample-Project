@@ -66,11 +66,3 @@ jobs:
 
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
-  deploy:
-    needs: docker
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy application
-        run: echo "Add your real deployment step here: Docker Hub, ECS, Azure, Heroku, Kubernetes, etc."
