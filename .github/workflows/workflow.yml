@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build&test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +20,17 @@ jobs:
           cache: 'maven'
       - name: Maven Build
         run: mvn clean install -DskipTests
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '8'
+          cache: 'maven'        
 
       - name: Run unit tests
         run: mvn test
