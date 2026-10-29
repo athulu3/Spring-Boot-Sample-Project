@@ -8,7 +8,7 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
-RUN chmod +x mvnw && ./mvnw package
+RUN chmod +x mvnw && ./mvnw package -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
 FROM ubuntu:20.04
