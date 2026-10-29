@@ -38,6 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
+      - uses: actions/checkout@v4
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
@@ -49,7 +50,7 @@ jobs:
         run: mvn package -DskipTests
   publish:
     runs-on: ubuntu-latest
-    needs: package
+    needs: test
     steps:
       - uses: actions/checkout@v4
       - name: Set up Java
